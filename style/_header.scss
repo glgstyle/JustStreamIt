@@ -1,0 +1,47 @@
+//until 479px: Extra small device 
+$xs: 0;
+//320px — 480px: Mobile devices
+$mobile: 480px;
+//481px — 768px: iPads, Tablets
+$tablet-width: 768px;
+//769px — 1024px: Small screens, laptops
+$laptop: 1024px;
+//1025px — 1200px: Desktops, large screens
+$desktop-width: 1200px;
+//1280px and more —  Extra large screens, TV
+$xl: 1280px;
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content
+    }
+};
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content
+    }
+};
+@include desktop{
+    header{
+        background-color: blue;
+        display: flex;
+        padding: 20px;
+        ul{
+            margin-left: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            a{
+                text-decoration: none;
+                li{
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    font-size: 18px;
+                    list-style-type:none
+                }
+            }
+        }
+    
+    }
+    
+}
