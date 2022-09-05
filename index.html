@@ -16,12 +16,22 @@
           function findTheBestMovie() {
             fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
             .then((response) => response.json())
+            // .then((data) => console.log(data))
             .then((data) => {
+              let bestMovieInfos = document.createElement('div');
+              bestMovieInfos.className = "best-movie-infos";
+              let bestMovieTitle = document.createElement('h2');
+              bestMovieTitle.textContent = data["results"][0]["title"];
               let imageUrl = document.createElement('img');
               imageUrl.src = data["results"][0]["image_url"];
-              imageUrl.className = "image-url";
-              let bestMovie = document.querySelector('#best-movie')
-              bestMovie.appendChild(imageUrl)
+              imageUrl.className = "best-movie-image";
+              let bestMovie = document.querySelector('#best-movie');
+              let playButton = document.createElement('button');
+              playButton.innerHTML = "Play";
+              bestMovieInfos.appendChild(bestMovieTitle);
+              bestMovieInfos.appendChild(playButton);
+              bestMovieInfos.appendChild(imageUrl);
+              bestMovie.appendChild(bestMovieInfos);
             })
           }
           function topRatedMovies() {
@@ -67,7 +77,6 @@
         <div id="header"></div> 
         <div class="main">
             <div id="best-movie">
-              <p>Meilleur film</p>
             </div>
             <div class="images-carousel">
               <h2>Les mieux notés</h2>
