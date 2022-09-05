@@ -1,6 +1,6 @@
 @media (min-width: 1200px) {
   header {
-    background-color: blue;
+    background-color: white;
     display: flex;
     padding: 20px;
   }
@@ -23,7 +23,16 @@
 body {
   width: 100%;
   margin: 0;
-  background-color: red;
+  background-color: black;
+}
+body h2, body p {
+  color: white;
+}
+body #top-rated, body #top-rated-action, body #top-rated-comedy, body #top-rated-thriller {
+  display: flex;
+}
+body .top-rated-image {
+  padding: 3px;
 }
 
 /*# sourceMappingURL=home.css.map */

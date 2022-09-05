@@ -5,5 +5,18 @@
 body{
     width: 100%;
     margin:0;
-    background-color: red
+    background-color: black;
+    h2,p{
+        color: white
+    }
+    #top-rated, #top-rated-action, #top-rated-comedy, #top-rated-thriller{
+        display: flex;
+    }
+    .top-rated-image{
+        padding : 3px;
+        
+    }
+    
+
 }
+
