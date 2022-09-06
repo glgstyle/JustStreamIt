@@ -21,7 +21,8 @@
             .then((data) => {
               let bestMovieInfos = document.createElement('div');
               bestMovieInfos.className = "best-movie-infos";
-              // bestMovieInfos.id = "best-movie-infos";
+              let bestMovieInfosLeft = document.createElement('div')
+              bestMovieInfosLeft.className = "best-movie-infos-left";
               let bestMovieTitle = document.createElement('h2');
               bestMovieTitle.textContent = data["results"][0]["title"];
               let imageUrl = document.createElement('img');
@@ -29,10 +30,14 @@
               imageUrl.className = "best-movie-image";
               let descriptionUrl = data["results"][0]["url"]
               let bestMovie = document.querySelector('#best-movie');
-              let playButton = document.createElement('button');
-              playButton.innerHTML = "Play";
-              bestMovieInfos.appendChild(bestMovieTitle);
-              bestMovieInfos.appendChild(playButton);
+              // let playButton = document.createElement('button');
+              // playButton.innerHTML = "Play";
+              // let MoreButton = document.createElement('button');
+              // MoreButton.innerHTML = "En savoir plus";
+              bestMovieInfosLeft.appendChild(bestMovieTitle);
+              // bestMovieInfosLeft.appendChild(playButton);
+              // bestMovieInfosLeft.appendChild(MoreButton);
+              bestMovieInfos.appendChild(bestMovieInfosLeft)
               bestMovieInfos.appendChild(imageUrl);
               bestMovie.appendChild(bestMovieInfos);
               return fetch(descriptionUrl)
@@ -41,10 +46,16 @@
               .then((response) => response.json())
               // .then((description) => console.log(description["description"]))
               .then((description) => {
+              let playButton = document.createElement('button');
+              playButton.innerHTML = "Play";
+              let MoreButton = document.createElement('button');
+              MoreButton.innerHTML = "En savoir plus";
               let bestMovieDescription = document.createElement('p')
               bestMovieDescription.textContent = description["description"]
-              let bestMovieInfos = document.querySelector(".best-movie-infos")
-              bestMovieInfos.appendChild(bestMovieDescription)
+              let bestMovieInfosLeft = document.querySelector(".best-movie-infos-left")
+              bestMovieInfosLeft.appendChild(bestMovieDescription)
+              bestMovieInfosLeft.appendChild(playButton);
+              bestMovieInfosLeft.appendChild(MoreButton);
               
             })
           }
