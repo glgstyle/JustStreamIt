@@ -98,7 +98,7 @@
               movieInfosHeader.className = "movie-infos-header";
               // button
               let closeButton = document.createElement('button');
-              closeButton.innerText = "X"
+              closeButton.innerText = "X";
               closeButton.onclick = function () {
                 modal = document.querySelector(".modal");
                 modal.className = "invisible";
@@ -196,14 +196,21 @@
               .then((response) => response.json())
               .then((data) => {
                 for (let i = 0; i < 8; i++){
-                let imageUrl = document.createElement('img');
-                imageUrl.src = data["results"][i]["image_url"];
-                imageUrl.className = "top-rated-image";
-                console.log(data["results"][i]["url"])
-                imageUrl.onclick = openMovieDataModal(url = (data["results"][i]["url"]));
+                let image = document.createElement('img');
+                image.src = data["results"][i]["image_url"];
+                image.className = "top-rated-image";
+                image.id = data["results"][i]["url"]
+                // image.onclick = function() {
+                //   openMovieDataModal(data["results"][i]["url"])
+                // };
                 let bestMovie = document.querySelector('#top-rated')
-                bestMovie.appendChild(imageUrl)
+                bestMovie.appendChild(image)
                 }
+                image.onclick = function() {
+                  url = image.id;
+                  url = url.replaceAll('""', '');
+                  openMovieDataModal(url)
+                };
               })}
           }
           function topRatedGenre(genre, selectorQuery){
