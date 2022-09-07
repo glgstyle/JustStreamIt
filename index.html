@@ -59,7 +59,14 @@
             fetch(url)
             .then((response) => response.json())
             .then((data) => {
-              let movieFullDescriptionUrl = data["results"][0]["url"]
+              // let movieFullDescriptionUrl = data["url"]
+              let movieFullDescriptionUrl = ""
+              if (data["url"]) {
+                movieFullDescriptionUrl = data["url"]
+              }
+              else{
+                movieFullDescriptionUrl = data["results"][0]["url"]
+              }
               return fetch(movieFullDescriptionUrl)
             })
             .then((response) => response.json())
@@ -189,46 +196,29 @@
               document.body.appendChild(modalContainer);
             })
           };
-          function topRatedMovies() {
-            for (let y = 1; y < 5; y++){
-              url = "http://localhost:8000/api/v1/titles/?page="+y+"&sort_by=-imdb_score"
-              fetch(url)
-              .then((response) => response.json())
-              .then((data) => {
-                for (let i = 0; i < 8; i++){
-                let image = document.createElement('img');
-                image.src = data["results"][i]["image_url"];
-                image.className = "top-rated-image";
-                image.id = data["results"][i]["url"]
-                // image.onclick = function() {
-                //   openMovieDataModal(data["results"][i]["url"])
-                // };
-                let bestMovie = document.querySelector('#top-rated')
-                bestMovie.appendChild(image)
-                }
-                image.onclick = function() {
-                  url = image.id;
-                  url = url.replaceAll('""', '');
-                  openMovieDataModal(url)
-                };
-              })}
-          }
           function topRatedGenre(genre, selectorQuery){
-            for (let y = 1; y < 5 ; y++){
-              url = "http://localhost:8000/api/v1/titles/?page="+y+"&genre="+genre+"&sort_by=-imdb_score"
-              console.log(url)
-              fetch(url)
-              .then((response) => response.json())
-              .then((data) => {
-                for (let i = 0; i < 8; i++){
-                let imageUrl = document.createElement('img');
-                imageUrl.src = data["results"][i]["image_url"];
-                imageUrl.className = "top-rated-image";
-                let bestMovie = document.querySelector(selectorQuery)
-                bestMovie.appendChild(imageUrl)
-                }
-              })}
-          };
+            if (genre != "") {
+              url = "http://localhost:8000/api/v1/titles/?genre="+genre+"&sort_by=-imdb_score&page_size=7"
+            }
+            else {
+              url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
+            }
+            console.log(url)
+            fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              for (let i = 0; i < data["results"].length; i++){
+              let imageUrl = document.createElement('img');
+              imageUrl.src = data["results"][i]["image_url"];
+              imageUrl.className = "top-rated-image";
+              imageUrl.url = data["results"][i]["url"]
+              imageUrl.addEventListener("click", function(event) {
+                openMovieDataModal(event.currentTarget.url)
+              })
+              let bestMovie = document.querySelector(selectorQuery)
+              bestMovie.appendChild(imageUrl)
+              }
+            })};
           function scrollToLeft(idTag) {
             let leftButton = document.getElementById(idTag);
             leftButton.scrollLeft -= 200;
@@ -238,11 +228,10 @@
             rightButton.scrollLeft += 200;
           };
           findTheBestMovie()
-          topRatedMovies()
+          topRatedGenre("","#top-rated")
           topRatedGenre("action", "#top-rated-action")
           topRatedGenre("comedy", "#top-rated-comedy")
           topRatedGenre("thriller", "#top-rated-thriller")
-          // openMovieDataModal()
         </script>
     </head>
     <body>
