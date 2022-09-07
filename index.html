@@ -13,7 +13,7 @@
                 $("#footer").load("footer.html");}); 
         </script> 
         <script type="text/javascript">
-        
+        let bestMovieUrl = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score"
           function findTheBestMovie() {
             fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
             .then((response) => response.json())
@@ -30,39 +30,168 @@
               imageUrl.className = "best-movie-image";
               let descriptionUrl = data["results"][0]["url"]
               let bestMovie = document.querySelector('#best-movie');
-              // let playButton = document.createElement('button');
-              // playButton.innerHTML = "Play";
-              // let MoreButton = document.createElement('button');
-              // MoreButton.innerHTML = "En savoir plus";
               bestMovieInfosLeft.appendChild(bestMovieTitle);
-              // bestMovieInfosLeft.appendChild(playButton);
-              // bestMovieInfosLeft.appendChild(MoreButton);
               bestMovieInfos.appendChild(bestMovieInfosLeft)
               bestMovieInfos.appendChild(imageUrl);
               bestMovie.appendChild(bestMovieInfos);
               return fetch(descriptionUrl)
             })
-              // fetch(descriptionUrl)
               .then((response) => response.json())
-              // .then((description) => console.log(description["description"]))
               .then((description) => {
               let playButton = document.createElement('button');
               playButton.innerHTML = "Play";
-              let MoreButton = document.createElement('button');
-              MoreButton.innerHTML = "En savoir plus";
-              let bestMovieDescription = document.createElement('p')
-              bestMovieDescription.textContent = description["description"]
-              let bestMovieInfosLeft = document.querySelector(".best-movie-infos-left")
-              bestMovieInfosLeft.appendChild(bestMovieDescription)
+              let moreButton = document.createElement('button');
+              moreButton.innerHTML = "En savoir plus";
+              moreButton.className = "more-button";
+              // moreButton.id = "open-modal";
+              moreButton.onclick = function() {
+                openMovieDataModal(bestMovieUrl)
+              }
+              let bestMovieDescription = document.createElement('p');
+              bestMovieDescription.textContent = description["description"];
+              let bestMovieInfosLeft = document.querySelector(".best-movie-infos-left");
+              bestMovieInfosLeft.appendChild(bestMovieDescription);
               bestMovieInfosLeft.appendChild(playButton);
-              bestMovieInfosLeft.appendChild(MoreButton);
-              
+              bestMovieInfosLeft.appendChild(moreButton);
             })
-          }
+          };
+          function openMovieDataModal(url) {
+            fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              let movieFullDescriptionUrl = data["results"][0]["url"]
+              return fetch(movieFullDescriptionUrl)
+            })
+            .then((response) => response.json())
+              .then((movieFullDescription) => {
+                let modalContainer = document.createElement('div');
+              modalContainer.className = "modal-container";
+              modalContainer.id = "modal-container-id";
+              let movieInfosModal = document.createElement('div');
+              movieInfosModal.className = "modal";
+              // movieInfosModal.id = "movie-infos-modal";
+              let leftSideMovieInfos = document.createElement('div');
+              leftSideMovieInfos.className = "left-side-movie-infos";
+              // div with title + datas
+              let genreDiv = document.createElement('div');
+              let dateDiv = document.createElement('div');
+              let ratedDiv = document.createElement('div');
+              let imdbScoreDiv = document.createElement('div');
+              let directorsDiv = document.createElement('div');
+              let actorsDiv = document.createElement('div');
+              let durationDiv = document.createElement('div');
+              let countryDiv = document.createElement('div');
+              let boxOfficeDiv = document.createElement('div');
+              let descriptionDiv = document.createElement('div');
+              genreDiv.className = "modal-datas-div";
+              dateDiv.className = "modal-datas-div";
+              ratedDiv.className = "modal-datas-div";
+              imdbScoreDiv.className = "modal-datas-div";
+              directorsDiv.className = "modal-datas-div";
+              actorsDiv.className = "modal-datas-div";
+              durationDiv.className = "modal-datas-div";
+              countryDiv.className = "modal-datas-div";
+              boxOfficeDiv.className = "modal-datas-div";
+              descriptionDiv.className = "modal-datas-div";
+              // header
+              let movieInfosHeader = document.createElement('header');
+              movieInfosHeader.className = "movie-infos-header";
+              // button
+              let closeButton = document.createElement('button');
+              closeButton.innerText = "X"
+              closeButton.onclick = function () {
+                modal = document.querySelector(".modal");
+                modal.className = "invisible";
+              }
+              // data titles
+              let genre = document.createElement('h4');
+              let date = document.createElement('h4');
+              let rated = document.createElement('h4');
+              let ImdbScore = document.createElement('h4');
+              let directors = document.createElement('h4');
+              let actors = document.createElement('h4');
+              let duration = document.createElement('h4');
+              let country = document.createElement('h4'); 
+              let boxOffice = document.createElement('h4');
+              let resume = document.createElement('h4');
+              genre.textContent = ("Genre :");
+              date.textContent = ("Date :");
+              rated.textContent = ("Evalué :");
+              ImdbScore.textContent = ("ImdbScore :");
+              directors.textContent = ("Réalisateur :");
+              actors.textContent = ("Acteurs :");
+              duration.textContent = ("Durée :");
+              country.textContent = ("Pays :");
+              boxOffice.textContent = ("Box Office :");
+              resume.textContent = ("Résumé :");
+              // datas
+              let movieTitle = document.createElement('h3');
+              let movieGenre = document.createElement('p');
+              let movieDate = document.createElement('p');
+              let movieRated = document.createElement('p');
+              let movieImdbScore = document.createElement('p');
+              let movieDirectors = document.createElement('p');
+              let movieActors = document.createElement('p');
+              let movieDuration = document.createElement('p');
+              let movieCountry = document.createElement('p');
+              let movieBoxOffice = document.createElement('p');
+              let movieDescription = document.createElement('p');
+              let movieImage = document.createElement('img');
+              movieTitle.textContent = movieFullDescription["title"];
+              movieGenre.textContent = movieFullDescription["genres"];
+              movieDate.textContent = movieFullDescription["date_published"];
+              movieRated.textContent = movieFullDescription["rated"];
+              movieImdbScore.textContent = movieFullDescription["imdb_score"];
+              movieDirectors.textContent = movieFullDescription["directors"];
+              movieActors.textContent = movieFullDescription["actors"];
+              movieDuration.textContent = movieFullDescription["duration"];
+              movieCountry.textContent = movieFullDescription["countries"];
+              movieBoxOffice.textContent = movieFullDescription["votes"];
+              movieDescription.textContent = movieFullDescription["description"];
+              movieImage.src = movieFullDescription["image_url"];
+              // insertion in html
+              leftSideMovieInfos.appendChild(movieInfosHeader);
+              movieInfosHeader.appendChild(movieTitle);
+              genreDiv.appendChild(genre);
+              genreDiv.appendChild(movieGenre);
+              leftSideMovieInfos.appendChild(genreDiv);
+              dateDiv.appendChild(date);
+              dateDiv.appendChild(movieDate);
+              leftSideMovieInfos.appendChild(dateDiv);
+              ratedDiv.appendChild(rated);
+              ratedDiv.appendChild(movieRated);
+              leftSideMovieInfos.appendChild(ratedDiv);
+              imdbScoreDiv.appendChild(ImdbScore);
+              imdbScoreDiv.appendChild(movieImdbScore);
+              leftSideMovieInfos.appendChild(imdbScoreDiv);
+              directorsDiv.appendChild(directors);
+              directorsDiv.appendChild(movieDirectors);
+              leftSideMovieInfos.appendChild(directorsDiv);
+              actorsDiv.appendChild(actors);
+              actorsDiv.appendChild(movieActors);
+              leftSideMovieInfos.appendChild(actorsDiv);
+              durationDiv.appendChild(duration);
+              durationDiv.appendChild(movieDuration);
+              leftSideMovieInfos.appendChild(durationDiv);
+              countryDiv.appendChild(country);
+              countryDiv.appendChild(movieCountry);
+              leftSideMovieInfos.appendChild(countryDiv);
+              boxOfficeDiv.appendChild(boxOffice);
+              boxOfficeDiv.appendChild(movieBoxOffice);
+              leftSideMovieInfos.appendChild(boxOfficeDiv);
+              descriptionDiv.appendChild(resume);
+              descriptionDiv.appendChild(movieDescription);
+              leftSideMovieInfos.appendChild(descriptionDiv);
+              movieInfosModal.appendChild(closeButton);
+              movieInfosModal.appendChild(leftSideMovieInfos);
+              movieInfosModal.appendChild(movieImage);
+              modalContainer.appendChild(movieInfosModal);
+              document.body.appendChild(modalContainer);
+            })
+          };
           function topRatedMovies() {
             for (let y = 1; y < 5; y++){
               url = "http://localhost:8000/api/v1/titles/?page="+y+"&sort_by=-imdb_score"
-              console.log(url)
               fetch(url)
               .then((response) => response.json())
               .then((data) => {
@@ -70,6 +199,8 @@
                 let imageUrl = document.createElement('img');
                 imageUrl.src = data["results"][i]["image_url"];
                 imageUrl.className = "top-rated-image";
+                console.log(data["results"][i]["url"])
+                imageUrl.onclick = openMovieDataModal(url = (data["results"][i]["url"]));
                 let bestMovie = document.querySelector('#top-rated')
                 bestMovie.appendChild(imageUrl)
                 }
@@ -104,6 +235,7 @@
           topRatedGenre("action", "#top-rated-action")
           topRatedGenre("comedy", "#top-rated-comedy")
           topRatedGenre("thriller", "#top-rated-thriller")
+          // openMovieDataModal()
         </script>
     </head>
     <body>
