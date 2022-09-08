@@ -1,0 +1,33 @@
+@media (min-width: 1200px) {
+  footer {
+    margin: auto;
+    width: 65%;
+    color: white;
+  }
+  footer .block-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  footer .block-footer .col1, footer .block-footer .col2, footer .block-footer .col3 {
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+  footer .block-footer .col1 .heading, footer .block-footer .col2 .heading, footer .block-footer .col3 .heading {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  footer .block-footer .infos, footer .block-footer .terms {
+    display: grid;
+  }
+  footer .block-footer .infos a, footer .block-footer .terms a {
+    text-decoration: none;
+    color: white;
+  }
+  footer .block-footer ion-icon {
+    font-size: 35px;
+    padding-right: 20px;
+    color: white;
+  }
+}
+
+/*# sourceMappingURL=footer.css.map */

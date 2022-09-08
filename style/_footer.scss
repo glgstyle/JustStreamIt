@@ -1,0 +1,54 @@
+//until 479px: Extra small device 
+$xs: 0;
+//320px — 480px: Mobile devices
+$mobile: 480px;
+//481px — 768px: iPads, Tablets
+$tablet-width: 768px;
+//769px — 1024px: Small screens, laptops
+$laptop: 1024px;
+//1025px — 1200px: Desktops, large screens
+$desktop-width: 1200px;
+//1280px and more —  Extra large screens, TV
+$xl: 1280px;
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content
+    }
+};
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content
+    }
+};
+@include desktop{
+    footer{
+        margin: auto;
+        width: 65%;
+        color: white;
+        .block-footer{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            .col1, .col2, .col3{
+                margin: 0 auto;
+                padding-top: 20px;
+                .heading{
+                    margin-bottom: 30px;
+                    font-size: 20px;
+                }  
+            }
+            .infos, .terms{
+                display: grid;
+                a{
+                    text-decoration: none;
+                    color: white
+                }
+            }
+            ion-icon{
+                font-size: 35px;
+                padding-right: 20px;
+                color: white;
+            }
+        }
+    }
+}
