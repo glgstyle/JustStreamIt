@@ -12,9 +12,11 @@ body{
     }
     #top-rated-container, #top-rated-action-container, #top-rated-comedy-container, #top-rated-thriller-container{
         overflow: auto;
+        margin: auto;
+        width: 50vw;
         // hide scrollbar from navigator
         &::-webkit-scrollbar { 
-            width: 0 !important 
+            width: 0 !important   
         }
     }
     #top-rated, #top-rated-action, #top-rated-comedy, #top-rated-thriller{
@@ -60,9 +62,7 @@ body{
     .best-movie-image{
         width: 25%;
     }
-    .top-rated-image{
-        padding : 3px;
-    }
+
     #left-button, #right-button{
         cursor: pointer;
     }
@@ -74,15 +74,24 @@ body{
     .arrow-left{
         transform: scaleX(-1);
         position: absolute;
-        left: 5px;
+        left: 290px;
     }
     .arrow-right{
         position: absolute;
-        right: 5px;
+        right: 290px;
     }
     .images-carousel{
+        width: 80vw;
+        margin: auto;
+        h2{
+            padding-left: 245px;
+        }
         img{
             cursor: pointer;
+        }
+        .top-rated-image{
+            padding : 3px;
+            width: 300px;
         }
     }  
     .invisible{

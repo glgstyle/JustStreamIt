@@ -49,6 +49,8 @@ body h2, body p {
 }
 body #top-rated-container, body #top-rated-action-container, body #top-rated-comedy-container, body #top-rated-thriller-container {
   overflow: auto;
+  margin: auto;
+  width: 50vw;
 }
 body #top-rated-container::-webkit-scrollbar, body #top-rated-action-container::-webkit-scrollbar, body #top-rated-comedy-container::-webkit-scrollbar, body #top-rated-thriller-container::-webkit-scrollbar {
   width: 0 !important;
@@ -96,9 +98,6 @@ body .best-movie-infos .best-movie-infos-left p {
 body .best-movie-image {
   width: 25%;
 }
-body .top-rated-image {
-  padding: 3px;
-}
 body #left-button, body #right-button {
   cursor: pointer;
 }
@@ -110,14 +109,25 @@ body .arrow-left, body .arrow-right {
 body .arrow-left {
   transform: scaleX(-1);
   position: absolute;
-  left: 5px;
+  left: 290px;
 }
 body .arrow-right {
   position: absolute;
-  right: 5px;
+  right: 290px;
+}
+body .images-carousel {
+  width: 80vw;
+  margin: auto;
+}
+body .images-carousel h2 {
+  padding-left: 245px;
 }
 body .images-carousel img {
   cursor: pointer;
+}
+body .images-carousel .top-rated-image {
+  padding: 3px;
+  width: 300px;
 }
 body .invisible {
   display: none;
