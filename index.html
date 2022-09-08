@@ -72,79 +72,91 @@
             })
             .then((response) => response.json())
               .then((movieFullDescription) => {
-                let modalContainer = document.createElement('div');
-              modalContainer.className = "modal-container";
-              modalContainer.id = "modal-container-id";
-              let movieInfosModal = document.createElement('div');
-              movieInfosModal.className = "modal";
-              // movieInfosModal.id = "movie-infos-modal";
-              let leftSideMovieInfos = document.createElement('div');
-              leftSideMovieInfos.className = "left-side-movie-infos";
+                let modalContainer = document.getElementById("modal-container-id")
+                // let modalContainer = document.createElement('div');
+              // modalContainer.className = "modal-container";
+              // modalContainer.id = "modal-container-id";
+              let movieInfosModal = document.getElementById("modal-id")
+              movieInfosModal.className = "modal"
+              // let movieInfosModal = document.createElement('div');
+              // movieInfosModal.className = "modal";
+              let leftSideMovieInfos = document.getElementById("left-side-movie-infos-id")
+              // let leftSideMovieInfos = document.createElement('div');
+              // leftSideMovieInfos.className = "left-side-movie-infos";
               // div with title + datas
-              let genreDiv = document.createElement('div');
-              let dateDiv = document.createElement('div');
-              let ratedDiv = document.createElement('div');
-              let imdbScoreDiv = document.createElement('div');
-              let directorsDiv = document.createElement('div');
-              let actorsDiv = document.createElement('div');
-              let durationDiv = document.createElement('div');
-              let countryDiv = document.createElement('div');
-              let boxOfficeDiv = document.createElement('div');
-              let descriptionDiv = document.createElement('div');
-              genreDiv.className = "modal-datas-div";
-              dateDiv.className = "modal-datas-div";
-              ratedDiv.className = "modal-datas-div";
-              imdbScoreDiv.className = "modal-datas-div";
-              directorsDiv.className = "modal-datas-div";
-              actorsDiv.className = "modal-datas-div";
-              durationDiv.className = "modal-datas-div";
-              countryDiv.className = "modal-datas-div";
-              boxOfficeDiv.className = "modal-datas-div";
-              descriptionDiv.className = "modal-datas-div";
+
+              let genreDiv = document.getElementById('genre-div');
+              let dateDiv = document.getElementById('date-div');
+              ratedDiv = document.getElementById('rate-div');
+              imdbScoreDiv = document.getElementById('imdb-div');
+              directorsDiv = document.getElementById('directors-div');
+              actorsDiv = document.getElementById('actor-div');
+              durationDiv = document.getElementById('duration-div');
+              countryDiv = document.getElementById('country-div');
+              boxOfficeDiv = document.getElementById('box-office-div');
+              descriptionDiv = document.getElementById('description-div');
+              // genreDiv.className = "modal-datas-div";
+              // dateDiv.className = "modal-datas-div";
+              // ratedDiv.className = "modal-datas-div";
+              // imdbScoreDiv.className = "modal-datas-div";
+              // directorsDiv.className = "modal-datas-div";
+              // actorsDiv.className = "modal-datas-div";
+              // durationDiv.className = "modal-datas-div";
+              // countryDiv.className = "modal-datas-div";
+              // boxOfficeDiv.className = "modal-datas-div";
+              // descriptionDiv.className = "modal-datas-div";
+
               // header
-              let movieInfosHeader = document.createElement('header');
-              movieInfosHeader.className = "movie-infos-header";
+              let movieInfosHeader = document.getElementById("movie-infos-header-id")
+              // let movieInfosHeader = document.createElement('header');
+              // movieInfosHeader.className = "movie-infos-header";
+
               // button
-              let closeButton = document.createElement('button');
-              closeButton.innerText = "X";
+              let closeButton = document.getElementById("close-button")
+              // let closeButton = document.createElement('button');
+              // closeButton.innerText = "X";
               closeButton.onclick = function () {
                 modal = document.querySelector(".modal");
                 modal.className = "invisible";
               }
               // data titles
-              let genre = document.createElement('h4');
-              let date = document.createElement('h4');
-              let rated = document.createElement('h4');
-              let ImdbScore = document.createElement('h4');
-              let directors = document.createElement('h4');
-              let actors = document.createElement('h4');
-              let duration = document.createElement('h4');
-              let country = document.createElement('h4'); 
-              let boxOffice = document.createElement('h4');
-              let resume = document.createElement('h4');
-              genre.textContent = ("Genre :");
-              date.textContent = ("Date :");
-              rated.textContent = ("Evalué :");
-              ImdbScore.textContent = ("ImdbScore :");
-              directors.textContent = ("Réalisateur :");
-              actors.textContent = ("Acteurs :");
-              duration.textContent = ("Durée :");
-              country.textContent = ("Pays :");
-              boxOffice.textContent = ("Box Office :");
-              resume.textContent = ("Résumé :");
+
+              genre = document.getElementById('genre');
+              date = document.getElementById('date');
+              rated = document.getElementById('rated');
+              ImdbScore = document.getElementById('imdb');
+              directors = document.getElementById('directors');
+              actors = document.getElementById('actors');
+              duration = document.getElementById('duration');
+              country = document.getElementById('country'); 
+              boxOffice = document.getElementById('box-office');
+              resume = document.getElementById('description');
+              // genre.textContent = ("Genre :");
+              // date.textContent = ("Date :");
+              // rated.textContent = ("Evalué :");
+              // ImdbScore.textContent = ("ImdbScore :");
+              // directors.textContent = ("Réalisateur :");
+              // actors.textContent = ("Acteurs :");
+              // duration.textContent = ("Durée :");
+              // country.textContent = ("Pays :");
+              // boxOffice.textContent = ("Box Office :");
+              // resume.textContent = ("Résumé :");
+
               // datas
-              let movieTitle = document.createElement('h3');
-              let movieGenre = document.createElement('p');
-              let movieDate = document.createElement('p');
-              let movieRated = document.createElement('p');
-              let movieImdbScore = document.createElement('p');
-              let movieDirectors = document.createElement('p');
-              let movieActors = document.createElement('p');
-              let movieDuration = document.createElement('p');
-              let movieCountry = document.createElement('p');
-              let movieBoxOffice = document.createElement('p');
-              let movieDescription = document.createElement('p');
-              let movieImage = document.createElement('img');
+
+              let movieTitle = document.getElementById('movie-title');
+              let movieGenre = document.getElementById('movie-genre');
+              let movieDate = document.getElementById('movie-date');
+              let movieRated = document.getElementById('movie-rated');
+              let movieImdbScore = document.getElementById('movie-imdb');
+              let movieDirectors = document.getElementById('movie-directors');
+              let movieActors = document.getElementById('movie-actors');
+              let movieDuration = document.getElementById('movie-duration');
+              let movieCountry = document.getElementById('movie-country');
+              let movieBoxOffice = document.getElementById('movie-box-office');
+              let movieDescription = document.getElementById('movie-description');
+              let movieImage = document.getElementById('image-id')
+              // let movieImage = document.createElement('img');
               movieTitle.textContent = movieFullDescription["title"];
               movieGenre.textContent = movieFullDescription["genres"];
               movieDate.textContent = movieFullDescription["date_published"];
@@ -158,26 +170,8 @@
               movieDescription.textContent = movieFullDescription["description"];
               movieImage.src = movieFullDescription["image_url"];
               // insertion in html
-              leftSideMovieInfos.appendChild(movieInfosHeader);
-              movieInfosHeader.appendChild(movieTitle);
-              genreDiv.appendChild(genre);
-              genreDiv.appendChild(movieGenre);
-              leftSideMovieInfos.appendChild(genreDiv);
-              dateDiv.appendChild(date);
-              dateDiv.appendChild(movieDate);
-              leftSideMovieInfos.appendChild(dateDiv);
-              ratedDiv.appendChild(rated);
-              ratedDiv.appendChild(movieRated);
-              leftSideMovieInfos.appendChild(ratedDiv);
-              imdbScoreDiv.appendChild(ImdbScore);
-              imdbScoreDiv.appendChild(movieImdbScore);
-              leftSideMovieInfos.appendChild(imdbScoreDiv);
-              directorsDiv.appendChild(directors);
-              directorsDiv.appendChild(movieDirectors);
-              leftSideMovieInfos.appendChild(directorsDiv);
-              actorsDiv.appendChild(actors);
-              actorsDiv.appendChild(movieActors);
-              leftSideMovieInfos.appendChild(actorsDiv);
+              // leftSideMovieInfos.appendChild(movieInfosHeader);
+              // movieInfosHeader.appendChild(movieTitle); 
               durationDiv.appendChild(duration);
               durationDiv.appendChild(movieDuration);
               leftSideMovieInfos.appendChild(durationDiv);
@@ -190,11 +184,31 @@
               descriptionDiv.appendChild(resume);
               descriptionDiv.appendChild(movieDescription);
               leftSideMovieInfos.appendChild(descriptionDiv);
+              actorsDiv.appendChild(actors);
+              actorsDiv.appendChild(movieActors);
+              leftSideMovieInfos.appendChild(actorsDiv);
+              directorsDiv.appendChild(directors);
+              directorsDiv.appendChild(movieDirectors);
+              leftSideMovieInfos.appendChild(directorsDiv);
+              imdbScoreDiv.appendChild(ImdbScore);
+              imdbScoreDiv.appendChild(movieImdbScore);
+              leftSideMovieInfos.appendChild(imdbScoreDiv);
+              genreDiv.appendChild(genre);
+              genreDiv.appendChild(movieGenre);
+              leftSideMovieInfos.appendChild(genreDiv);
+              dateDiv.appendChild(date);
+              dateDiv.appendChild(movieDate);
+              leftSideMovieInfos.appendChild(dateDiv);
+              ratedDiv.appendChild(rated);
+              ratedDiv.appendChild(movieRated);
+              leftSideMovieInfos.appendChild(ratedDiv);
+              leftSideMovieInfos.appendChild(movieInfosHeader);
+              movieInfosHeader.appendChild(movieTitle);
               movieInfosModal.appendChild(closeButton);
               movieInfosModal.appendChild(leftSideMovieInfos);
               movieInfosModal.appendChild(movieImage);
               modalContainer.appendChild(movieInfosModal);
-              document.body.appendChild(modalContainer);
+              // document.body.appendChild(modalContainer);
             })
           };
           function topRatedGenre(genre, selectorQuery){
@@ -236,6 +250,59 @@
         </script>
     </head>
     <body>
+      <div class="modal-container" id="modal-container-id">
+        <div id="modal-id" class="invisible">
+          <button id="close-button">X</button>
+          <div class="left-side-movie-infos" id="left-side-movie-infos-id">
+            <header id="movie-infos-header-id">
+              <h3 id="movie-title"></h3>
+            </header>
+            <div class="modal-datas-div" id="genre-div">
+              <h4 id="genre">Genre :</h4>
+              <p id="movie-genre"></p>
+            </div>
+            <div class="modal-datas-div" id="date-div">
+              <h4 id="date">Date :</h4>
+              <p id="movie-date"></p>
+            </div>
+            <div class="modal-datas-div" id="rate-div">
+              <h4 id="rated">Evalué :</h4>
+              <p id="movie-rated"></p>
+            </div>
+            <div class="modal-datas-div" id="imdb-div">
+              <h4 id="imdb">ImdbScore :</h4>
+              <p id="movie-imdb"></p>
+            </div>
+            <div class="modal-datas-div" id="directors-div">
+              <h4 id="directors">Réalisateur :</h4>
+              <p id="movie-directors"></p>
+            </div>
+            <div class="modal-datas-div" id="actors-div">
+              <h4 id="actors">Acteurs :</h4>
+              <p id="movie-actors"></p>
+            </div>
+            <div class="modal-datas-div" id="duration-div">
+              <h4 id="duration">Durée :</h4>
+              <p id="movie-duration"></p>
+            </div>
+            <div class="modal-datas-div" id="country-div">
+              <h4 id="country">Pays :</h4>
+              <p id="movie-country"></p>
+            </div>
+            <div class="modal-datas-div" id="box-office-div">
+              <h4 id="box-office">Box Office :</h4>
+              <p id="movie-box-office"></p>
+            </div>
+            <div class="modal-datas-div" id="description-div">
+              <h4 id="description">Résumé :</h4>
+              <p id="movie-description"></p>
+            </div>
+          </div>
+          <img src="" alt="" id="image-id">
+          
+      </div>
+      </div>
+      <div id="modal-container"></div>
         <div id="header"></div> 
         <div class="main">
           <div id="best-movie">

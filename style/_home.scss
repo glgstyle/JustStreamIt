@@ -98,6 +98,7 @@ body{
         display: none;
     }
     .modal{
+        // visibility: hidden;
         position: fixed; /* Stay in place */
         display: flex;
         z-index: 1; /* Sit on top */
