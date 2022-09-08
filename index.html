@@ -8,246 +8,14 @@
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
         <link rel="stylesheet" href="style/header.css">
         <link rel="stylesheet" href="style/home.css">
-        <link rel="stylesheet" href="style/footer.css">
+        <!-- <link rel="stylesheet" href="style/footer.css"> -->
+        <script src="/script.js"></script>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script> 
-        <script>$(function(){$("#header").load("header.html");
-                $("#footer").load("footer.html");}); 
+        <script>$(function(){
+                  $("#header").load("header.html");
+                  $("#footer").load("footer.html");
+                }); 
         </script> 
-        <script type="text/javascript">
-        let bestMovieUrl = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score"
-          function findTheBestMovie() {
-            fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
-            .then((response) => response.json())
-            // .then((data) => console.log(data))
-            .then((data) => {
-              let bestMovieInfos = document.createElement('div');
-              bestMovieInfos.className = "best-movie-infos";
-              let bestMovieInfosLeft = document.createElement('div')
-              bestMovieInfosLeft.className = "best-movie-infos-left";
-              let bestMovieTitle = document.createElement('h2');
-              bestMovieTitle.textContent = data["results"][0]["title"];
-              let imageUrl = document.createElement('img');
-              imageUrl.src = data["results"][0]["image_url"];
-              imageUrl.className = "best-movie-image";
-              let descriptionUrl = data["results"][0]["url"]
-              let bestMovie = document.querySelector('#best-movie');
-              bestMovieInfosLeft.appendChild(bestMovieTitle);
-              bestMovieInfos.appendChild(bestMovieInfosLeft)
-              bestMovieInfos.appendChild(imageUrl);
-              bestMovie.appendChild(bestMovieInfos);
-              return fetch(descriptionUrl)
-            })
-              .then((response) => response.json())
-              .then((description) => {
-              let playButton = document.createElement('button');
-              playButton.innerHTML = "Play";
-              let moreButton = document.createElement('button');
-              moreButton.innerHTML = "En savoir plus";
-              moreButton.className = "more-button";
-              // moreButton.id = "open-modal";
-              moreButton.onclick = function() {
-                openMovieDataModal(bestMovieUrl)
-              }
-              let bestMovieDescription = document.createElement('p');
-              bestMovieDescription.textContent = description["description"];
-              let bestMovieInfosLeft = document.querySelector(".best-movie-infos-left");
-              bestMovieInfosLeft.appendChild(bestMovieDescription);
-              bestMovieInfosLeft.appendChild(playButton);
-              bestMovieInfosLeft.appendChild(moreButton);
-            })
-          };
-          function openMovieDataModal(url) {
-            fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-              // let movieFullDescriptionUrl = data["url"]
-              let movieFullDescriptionUrl = ""
-              if (data["url"]) {
-                movieFullDescriptionUrl = data["url"]
-              }
-              else{
-                movieFullDescriptionUrl = data["results"][0]["url"]
-              }
-              return fetch(movieFullDescriptionUrl)
-            })
-            .then((response) => response.json())
-              .then((movieFullDescription) => {
-                let modalContainer = document.getElementById("modal-container-id")
-                // let modalContainer = document.createElement('div');
-              // modalContainer.className = "modal-container";
-              // modalContainer.id = "modal-container-id";
-              let movieInfosModal = document.getElementById("modal-id")
-              movieInfosModal.className = "modal"
-              // let movieInfosModal = document.createElement('div');
-              // movieInfosModal.className = "modal";
-              let leftSideMovieInfos = document.getElementById("left-side-movie-infos-id")
-              // let leftSideMovieInfos = document.createElement('div');
-              // leftSideMovieInfos.className = "left-side-movie-infos";
-              // div with title + datas
-
-              let genreDiv = document.getElementById('genre-div');
-              let dateDiv = document.getElementById('date-div');
-              ratedDiv = document.getElementById('rate-div');
-              imdbScoreDiv = document.getElementById('imdb-div');
-              directorsDiv = document.getElementById('directors-div');
-              actorsDiv = document.getElementById('actor-div');
-              durationDiv = document.getElementById('duration-div');
-              countryDiv = document.getElementById('country-div');
-              boxOfficeDiv = document.getElementById('box-office-div');
-              descriptionDiv = document.getElementById('description-div');
-              // genreDiv.className = "modal-datas-div";
-              // dateDiv.className = "modal-datas-div";
-              // ratedDiv.className = "modal-datas-div";
-              // imdbScoreDiv.className = "modal-datas-div";
-              // directorsDiv.className = "modal-datas-div";
-              // actorsDiv.className = "modal-datas-div";
-              // durationDiv.className = "modal-datas-div";
-              // countryDiv.className = "modal-datas-div";
-              // boxOfficeDiv.className = "modal-datas-div";
-              // descriptionDiv.className = "modal-datas-div";
-
-              // header
-              let movieInfosHeader = document.getElementById("movie-infos-header-id")
-              // let movieInfosHeader = document.createElement('header');
-              // movieInfosHeader.className = "movie-infos-header";
-
-              // button
-              let closeButton = document.getElementById("close-button")
-              // let closeButton = document.createElement('button');
-              // closeButton.innerText = "X";
-              closeButton.onclick = function () {
-                modal = document.querySelector(".modal");
-                modal.className = "invisible";
-              }
-              // data titles
-
-              genre = document.getElementById('genre');
-              date = document.getElementById('date');
-              rated = document.getElementById('rated');
-              ImdbScore = document.getElementById('imdb');
-              directors = document.getElementById('directors');
-              actors = document.getElementById('actors');
-              duration = document.getElementById('duration');
-              country = document.getElementById('country'); 
-              boxOffice = document.getElementById('box-office');
-              resume = document.getElementById('description');
-              // genre.textContent = ("Genre :");
-              // date.textContent = ("Date :");
-              // rated.textContent = ("Evalué :");
-              // ImdbScore.textContent = ("ImdbScore :");
-              // directors.textContent = ("Réalisateur :");
-              // actors.textContent = ("Acteurs :");
-              // duration.textContent = ("Durée :");
-              // country.textContent = ("Pays :");
-              // boxOffice.textContent = ("Box Office :");
-              // resume.textContent = ("Résumé :");
-
-              // datas
-
-              let movieTitle = document.getElementById('movie-title');
-              let movieGenre = document.getElementById('movie-genre');
-              let movieDate = document.getElementById('movie-date');
-              let movieRated = document.getElementById('movie-rated');
-              let movieImdbScore = document.getElementById('movie-imdb');
-              let movieDirectors = document.getElementById('movie-directors');
-              let movieActors = document.getElementById('movie-actors');
-              let movieDuration = document.getElementById('movie-duration');
-              let movieCountry = document.getElementById('movie-country');
-              let movieBoxOffice = document.getElementById('movie-box-office');
-              let movieDescription = document.getElementById('movie-description');
-              let movieImage = document.getElementById('image-id')
-              // let movieImage = document.createElement('img');
-              movieTitle.textContent = movieFullDescription["title"];
-              movieGenre.textContent = movieFullDescription["genres"];
-              movieDate.textContent = movieFullDescription["date_published"];
-              movieRated.textContent = movieFullDescription["rated"];
-              movieImdbScore.textContent = movieFullDescription["imdb_score"];
-              movieDirectors.textContent = movieFullDescription["directors"];
-              movieActors.textContent = movieFullDescription["actors"];
-              movieDuration.textContent = movieFullDescription["duration"];
-              movieCountry.textContent = movieFullDescription["countries"];
-              movieBoxOffice.textContent = movieFullDescription["votes"];
-              movieDescription.textContent = movieFullDescription["description"];
-              movieImage.src = movieFullDescription["image_url"];
-              // insertion in html
-              // leftSideMovieInfos.appendChild(movieInfosHeader);
-              // movieInfosHeader.appendChild(movieTitle); 
-              durationDiv.appendChild(duration);
-              durationDiv.appendChild(movieDuration);
-              leftSideMovieInfos.appendChild(durationDiv);
-              countryDiv.appendChild(country);
-              countryDiv.appendChild(movieCountry);
-              leftSideMovieInfos.appendChild(countryDiv);
-              boxOfficeDiv.appendChild(boxOffice);
-              boxOfficeDiv.appendChild(movieBoxOffice);
-              leftSideMovieInfos.appendChild(boxOfficeDiv);
-              descriptionDiv.appendChild(resume);
-              descriptionDiv.appendChild(movieDescription);
-              leftSideMovieInfos.appendChild(descriptionDiv);
-              actorsDiv.appendChild(actors);
-              actorsDiv.appendChild(movieActors);
-              leftSideMovieInfos.appendChild(actorsDiv);
-              directorsDiv.appendChild(directors);
-              directorsDiv.appendChild(movieDirectors);
-              leftSideMovieInfos.appendChild(directorsDiv);
-              imdbScoreDiv.appendChild(ImdbScore);
-              imdbScoreDiv.appendChild(movieImdbScore);
-              leftSideMovieInfos.appendChild(imdbScoreDiv);
-              genreDiv.appendChild(genre);
-              genreDiv.appendChild(movieGenre);
-              leftSideMovieInfos.appendChild(genreDiv);
-              dateDiv.appendChild(date);
-              dateDiv.appendChild(movieDate);
-              leftSideMovieInfos.appendChild(dateDiv);
-              ratedDiv.appendChild(rated);
-              ratedDiv.appendChild(movieRated);
-              leftSideMovieInfos.appendChild(ratedDiv);
-              leftSideMovieInfos.appendChild(movieInfosHeader);
-              movieInfosHeader.appendChild(movieTitle);
-              movieInfosModal.appendChild(closeButton);
-              movieInfosModal.appendChild(leftSideMovieInfos);
-              movieInfosModal.appendChild(movieImage);
-              modalContainer.appendChild(movieInfosModal);
-              // document.body.appendChild(modalContainer);
-            })
-          };
-          function topRatedGenre(genre, selectorQuery){
-            if (genre != "") {
-              url = "http://localhost:8000/api/v1/titles/?genre="+genre+"&sort_by=-imdb_score&page_size=7"
-            }
-            else {
-              url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
-            }
-            console.log(url)
-            fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-              for (let i = 0; i < data["results"].length; i++){
-              let imageUrl = document.createElement('img');
-              imageUrl.src = data["results"][i]["image_url"];
-              imageUrl.className = "top-rated-image";
-              imageUrl.url = data["results"][i]["url"]
-              imageUrl.addEventListener("click", function(event) {
-                openMovieDataModal(event.currentTarget.url)
-              })
-              let bestMovie = document.querySelector(selectorQuery)
-              bestMovie.appendChild(imageUrl)
-              }
-            })};
-          function scrollToLeft(idTag) {
-            let leftButton = document.getElementById(idTag);
-            leftButton.scrollLeft -= 200;
-          };
-          function scrollToRight() {
-            let rightButton = document.getElementById(idTag);
-            rightButton.scrollLeft += 200;
-          };
-          findTheBestMovie()
-          topRatedGenre("","#top-rated")
-          topRatedGenre("action", "#top-rated-action")
-          topRatedGenre("comedy", "#top-rated-comedy")
-          topRatedGenre("thriller", "#top-rated-thriller")
-        </script>
     </head>
     <body>
       <div class="modal-container" id="modal-container-id">
@@ -299,94 +67,51 @@
             </div>
           </div>
           <img src="" alt="" id="image-id">
-          
+        </div>
       </div>
-      </div>
-      <div id="modal-container"></div>
-        <div id="header"></div> 
-        <div class="main">
-          <div id="best-movie">
-          </div>
-          <div class="images-carousel">
-            <h2>Les mieux notés</h2>
-            <div id="top-rated-container">
-              <div id="top-rated">
-                <img onclick="scrollToLeft(idTag='top-rated-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                <img onclick="scrollToRight(idTag='top-rated-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-              </div>
+      <div id="header"></div> 
+      <div class="main">
+        <div id="best-movie">
+        </div>
+        <div class="images-carousel">
+          <h2>Les mieux notés</h2>
+          <div id="top-rated-container">
+            <div id="top-rated">
+              <img onclick="scrollToLeft(idTag='top-rated-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+              <img onclick="scrollToRight(idTag='top-rated-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
             </div>
-          </div>
-          <div class="images-carousel">
-              <h2>Action</h2>
-              <div id="top-rated-action-container">
-                <div id="top-rated-action">
-                  <img onclick="scrollToLeft(idTag='top-rated-action-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                  <img onclick="scrollToRight(idTag='top-rated-action-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                </div>
-              </div>
-          </div>
-          <div class="images-carousel">
-              <h2>Comédie</h2>
-              <div id="top-rated-comedy-container">
-                <div id="top-rated-comedy">
-                  <img onclick="scrollToLeft(idTag='top-rated-comedy-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                  <img onclick="scrollToRight(idTag='top-rated-comedy-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                </div>
-              </div>
-          </div>
-          <div class="images-carousel">
-              <h2>Thriller</h2>
-              <div id="top-rated-thriller-container">
-                <div id="top-rated-thriller">
-                  <img onclick="scrollToLeft(idTag='top-rated-thriller-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                  <img onclick="scrollToRight(idTag='top-rated-thriller-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
-                </div>
-              </div>
           </div>
         </div>
-        <footer>
-            <div class="block-footer">
-              <div class="col1">
-                <h3 class="heading">
-                  Informations
-                </h3>
-                <p class="infos">
-                  <a href="#">Devenir client</a>
-                  <a href="#">A propos</a>
-                  <a href="#">FAQ</a>
-                  <a href="#">Contact</a>
-                </p>
-              </div>
-              <div class="col2">
-                <h3 class="heading">
-                  Conditions
-                </h3>
-                <p class="terms">
-                  <a href="#">Conditions de vente</a>
-                  <a href="#">Politique de confidentialité</a>
-                  <a href="#">Newsletter</a>
-                </p>
-              </div>
-          
-              <div class="col3">
-                <h3 class="heading">
-                  Restons en contact
-                </h3>
-                <div class="social">
-                  <a href="#">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                  </a>
-                  <a href="#">
-                    <ion-icon name="logo-twitter"></ion-icon>
-                  </a>
-                  <a href="#">
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                  </a>
-                </div>
+        <div class="images-carousel">
+            <h2>Action</h2>
+            <div id="top-rated-action-container">
+              <div id="top-rated-action">
+                <img onclick="scrollToLeft(idTag='top-rated-action-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+                <img onclick="scrollToRight(idTag='top-rated-action-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
               </div>
             </div>
-          </footer>
-          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        </div>
+        <div class="images-carousel">
+            <h2>Comédie</h2>
+            <div id="top-rated-comedy-container">
+              <div id="top-rated-comedy">
+                <img onclick="scrollToLeft(idTag='top-rated-comedy-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+                <img onclick="scrollToRight(idTag='top-rated-comedy-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+              </div>
+            </div>
+        </div>
+        <div class="images-carousel">
+            <h2>Thriller</h2>
+            <div id="top-rated-thriller-container">
+              <div id="top-rated-thriller">
+                <img onclick="scrollToLeft(idTag='top-rated-thriller-container')" class="arrow-left" id="left-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+                <img onclick="scrollToRight(idTag='top-rated-thriller-container')" class="arrow-right" id="right-button" src="/images/fleche-droite.png" alt="flèche de défilement">
+              </div>
+            </div>
+        </div>
+      </div>
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <div id="footer"></div>
     </body>
 </html>
