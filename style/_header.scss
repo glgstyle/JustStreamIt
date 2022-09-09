@@ -1,64 +1,68 @@
-//until 479px: Extra small device 
-$xs: 0;
-//320px — 480px: Mobile devices
-$mobile: 480px;
-//481px — 768px: iPads, Tablets
-$tablet-width: 768px;
-//769px — 1024px: Small screens, laptops
-$laptop: 1024px;
-//1025px — 1200px: Desktops, large screens
-$desktop-width: 1200px;
-//1280px and more —  Extra large screens, TV
-$xl: 1280px;
+@import 'media_queries';
 
-@mixin tablet {
-    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
-        @content
+header{
+    background-color: black;
+    color: white;
+    display: flex;
+    padding: 20px;
+    img{
+        width: 15vw;
+        // invert the color of logo from white to black
+        filter: invert(1);
+        border-radius: 50px;
     }
-};
-@mixin desktop {
-    @media (min-width: #{$desktop-width}) {
-        @content
-    }
-};
-@include desktop{
-    header{
-        background-color: black;
-        color: white;
-        display: flex;
-        padding: 20px;
-        img{
-            width: 100px;
-            filter: invert(1);
-            border-radius: 50px;
+    a{
+        text-decoration: none;
+        &:visited{
+            color: white;
         }
+    }
+    h1{
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        font-size: 1em;
+        width: 80vw; 
+    }
+    ul{
+        position: absolute; 
+        top: 50px;
+        left: 14%; 
+        width: 35vw;
+        margin: 0;
+        padding-bottom: 10px;
+        display: flex;
         a{
             text-decoration: none;
-            &:visited{
-                color: white;
+            li{
+                display: block;
+                padding: 5px;
+                font-size: 15px;
+                list-style-type:none
             }
         }
+    }
+}   
+@include media(tablet, desktop, laptop){
+    header{
+        img{
+            width: 100px;
+        }
         h1{
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-
+            font-size: 35px;
+            width: 100%;
         }
         ul{
-            margin: 0;
-            padding-bottom: 10px;
-            display: flex;
+            position: inherit;
             flex-wrap: wrap;
             align-content: center;
             a{
-                text-decoration: none;
                 li{
-                    padding-left: 30px;
-                    padding-right: 30px;
-                    font-size: 18px;
-                    list-style-type:none
+                padding-left: 30px;
+                padding-right: 30px;
+                font-size: 18px;
                 }
             }
         }
-    }   
+    }
 }

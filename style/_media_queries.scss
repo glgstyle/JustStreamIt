@@ -1,0 +1,65 @@
+//until 479px: Extra small device 
+$extra-small: 0;
+//320px — 480px: Mobile devices
+$phone: 480px;
+//481px — 768px: iPads, Tablets
+$tablet-width: 768px;
+//769px — 1024px: Small screens, laptops
+$laptop-width: 1024px;
+//1025px — 1200px: Desktops, large screens
+$desktop-width: 1200px;
+//1280px and more —  Extra large screens, TV
+$xl: 1280px;
+
+@mixin xs {
+    @media (min-width: #{$extra-small}) and (max-width: #{$phone - 1px}) {
+        @content
+    }
+};
+@mixin mobile {
+    @media (min-width: #{$phone}) and (max-width: #{$tablet-width - 1px}) {
+        @content
+    }
+};
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$laptop-width - 1px}) {
+        @content
+    }
+};
+@mixin laptop {
+    @media (min-width: #{$laptop-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content
+    }
+};
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content
+    }
+};
+
+//  mixin to print out media queries 
+@mixin media($keys...) {
+    @each $key in $keys {
+        @if ($key == xs) {
+            @include xs {
+                @content
+            };
+        } @else if ($key == mobile) {
+            @include mobile {
+            @content
+            };
+        } @else if ($key == tablet) {
+            @include tablet {
+            @content
+            };
+        } @else if ($key == laptop) {
+            @include laptop() {
+            @content
+            };
+        } @else if ($key == desktop) {
+            @include desktop {
+            @content
+            }
+        }
+    }
+};
