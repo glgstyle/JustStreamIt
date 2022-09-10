@@ -79,6 +79,8 @@ Just Stream It utilise Sass, un langage de script pr√©processeur qui est compil√
 
 ## Installation de Sass
 
+Placez vous dans le terminal du projet Just Stream it et suivez les instructions suivantes. 
+
 ### Si vous utilisez Node.js
 
 ```npm install -g sass```
