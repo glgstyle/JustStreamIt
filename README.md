@@ -67,10 +67,11 @@ Les étapes 1 à 6 ne sont requises que pout l'installation initiale. Pour les l
 
 5. Démarrer le serveur(le port 50 est un exemple et est modifiable) :
 
- ```python -m http.server 50```
+     ```python -m http.server 50```
 
 6. Accéder au site depuis votre navigateur en tappant dans la barre d'adresse url(50 ou un autre port si différent) :
-```localhost:50```
+
+    ```localhost:50```
 
 # Modification du style
 
