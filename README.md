@@ -14,7 +14,7 @@ Just Stream It est une application web permettant de visualiser en temps réel u
 
 # Utilisation
 
-- Pour fonctionner le site à besoin de l'api OC Movies afin d'en extraire les données pour les afficher. Il faudra donc d'abord procéder à son installation:
+- Pour fonctionner le site à besoin de l'api OC Movies afin d'en extraire les données pour les afficher. Il faudra donc d'abord procéder à son installation.
 
 ## Installation d'OC-MOVIES
 
@@ -69,11 +69,14 @@ Les étapes 1 à 6 ne sont requises que pout l'installation initiale. Pour les l
 
  ```python -m http.server 50```
 
+6. Accéder au site depuis votre navigateur en tappant dans la barre d'adresse url(50 ou un autre port si différent) :
+```localhost:50```
+
 # Modification du style
 
-Just Stream It utilise sass, un langage de script préprocesseur qui est compilé ou interprété en CSS (Cascading Style Sheets). pour modifier des feuilles de style il faudra doc l'installer afin de compiler vos modifications.
+Just Stream It utilise Sass, un langage de script préprocesseur qui est compilé ou interprété en CSS (Cascading Style Sheets). Pour modifier ou créer des feuilles de style il faudra donc l'installer afin de compiler vos modifications.
 
-## Installation de sass
+## Installation de Sass
 
 ### Si vous utilisez Node.js
 
