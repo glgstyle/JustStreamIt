@@ -79,7 +79,7 @@ header ul a li {
     font-size: 18px;
   }
 }
-@media (min-width: 1024px -1px) and (max-width: 1199px) {
+@media (min-width: 1023px) and (max-width: 1199px) {
   header img {
     width: 100px;
   }
@@ -321,7 +321,7 @@ body .modal button:hover {
     width: 40%;
   }
 }
-@media (min-width: 1024px -1px) and (max-width: 1199px) {
+@media (min-width: 1023px) and (max-width: 1199px) {
   body .best-movie-infos {
     display: flex;
   }
